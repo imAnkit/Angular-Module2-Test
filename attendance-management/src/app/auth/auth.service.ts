@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private user: any = null;
+  private user: { username: string; role: 'employee' | 'hr' } | null = null;
   authenticationChanged = new EventEmitter<boolean>();
   constructor(private router: Router) {}
 
@@ -37,5 +37,9 @@ export class AuthService {
 
   getRole() {
     return this.getUser()?.role;
+  }
+
+  getUsername() {
+    return this.user ? this.user.username : null;
   }
 }
