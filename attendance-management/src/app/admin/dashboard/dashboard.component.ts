@@ -1,30 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Adjustment } from 'src/app/models/adjustment.model';
+import { StoreAttendanceService } from 'src/app/services/store-attendance.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
-  requests = [
-    {
-      date: '2024-03-05',
-      employee: 'Ankit Singh',
-      reason: 'Forgot',
-      status: 'Pending',
-    },
-    {
-      date: '2024-03-08',
-      employee: 'Ankur Singh',
-      reason: 'Wrong checkin',
-      status: 'Pending',
-    },
-  ];
-
+export class DashboardComponent implements OnInit {
+  requests: Adjustment[] = [];
+  constructor(private storeAttendanceService: StoreAttendanceService) {}
+  ngOnInit(): void {
+    this.requests = this.storeAttendanceService.getAdjustments();
+  }
   onApprove(request: any) {
     request.status = 'Approved';
+    this.storeAttendanceService.updateAdjustment(request);
   }
   onReject(request: any) {
     request.status = 'Rejected';
+    this.storeAttendanceService.updateAdjustment(request);
   }
 }

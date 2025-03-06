@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Attendance } from 'src/app/models/attendance.model';
+import { StoreAttendanceService } from 'src/app/services/store-attendance.service';
 
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.css'],
 })
-export class RecordsComponent {
-  records = [
-    {
-      date: '2025-03-01',
-      checkIn: '9:00 A.M',
-      checkOut: '5:00 P.M',
-      status: 'Present',
-    },
-    {
-      date: '2025-03-01',
-      checkIn: '9:20 A.M',
-      checkOut: '5:30 P.M',
-      status: 'Present',
-    },
-  ];
+export class RecordsComponent implements OnInit {
+  attendances: Attendance[] = [];
+  constructor(
+    private storeAttendanceService: StoreAttendanceService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    const user = this.authService.getUser();
+    this.attendances =
+      user?.role === 'hr'
+        ? this.storeAttendanceService.getAttendances()
+        : this.storeAttendanceService
+            .getAttendances()
+            .filter((a) => a.username === user?.username);
+  }
 }

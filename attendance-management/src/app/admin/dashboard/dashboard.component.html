@@ -6,6 +6,7 @@
       <th>User Name</th>
       <th>Reason</th>
       <th>Status</th>
+      <th>Requested Change</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -15,13 +16,16 @@
         {{ request.date }}
       </td>
       <td>
-        {{ request.employee }}
+        {{ request.username }}
       </td>
       <td>
         {{ request.reason }}
       </td>
       <td>
         {{ request.status }}
+      </td>
+      <td>
+        {{ request.requestedChange }}
       </td>
       <td>
         <button (click)="onApprove(request)">Approve</button>
