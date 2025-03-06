@@ -1,21 +1,32 @@
 <h2>Adjustment Requests</h2>
 <table>
-  <tr *ngFor="let request of requests">
-    <td>
-      {{ request.date }}
-    </td>
-    <td>
-      {{ request.employee }}
-    </td>
-    <td>
-      {{ request.reason }}
-    </td>
-    <td>
-      {{ request.status }}
-    </td>
-    <td>
-      <button (click)="onApprove(request)">Approve</button>
-      <button (click)="onReject(request)">Reject</button>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>User Name</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of requests">
+      <td>
+        {{ request.date }}
+      </td>
+      <td>
+        {{ request.employee }}
+      </td>
+      <td>
+        {{ request.reason }}
+      </td>
+      <td>
+        {{ request.status }}
+      </td>
+      <td>
+        <button (click)="onApprove(request)">Approve</button>
+        <button (click)="onReject(request)">Reject</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
