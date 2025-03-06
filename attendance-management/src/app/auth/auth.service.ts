@@ -1,20 +1,30 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private user: any = null;
-  constructor() {}
+  authenticationChanged = new EventEmitter<boolean>();
+  constructor(private router: Router) {}
 
   login(username: string, role: 'employee' | 'hr') {
     this.user = { username, role };
     localStorage.setItem('user', JSON.stringify(this.user));
+    this.authenticationChanged.emit(true);
+    if (role === 'hr') {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/attendance']);
+    }
   }
 
   logout() {
     this.user = null;
     localStorage.removeItem('user');
+    this.authenticationChanged.emit(false);
+    this.router.navigate(['/login']);
   }
 
   getUser() {
@@ -22,7 +32,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.getUser();
+    return !!localStorage.getItem('user');
   }
 
   getRole() {

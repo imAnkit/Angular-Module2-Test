@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="title">
+    <h3>Attendance Tracker</h3>
+  </div>
+  <ul *ngIf="loggedIn">
+    <li>
+      <a routerLink="/attendance" *ngIf="userrole === 'employee'">Attendance</a>
+    </li>
+    <li>
+      <a routerLink="/adjustment" *ngIf="userrole === 'employee'">Adjustment</a>
+    </li>
+    <li *ngIf="userrole === 'hr'"><a routerLink="/admin">Admin</a></li>
+    <li><button (click)="logOut()">Logout</button></li>
+  </ul>
+</nav>

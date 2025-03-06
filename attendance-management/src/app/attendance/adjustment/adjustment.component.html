@@ -11,15 +11,24 @@
 
 <h3>Your Requests</h3>
 <table>
-  <tr *ngFor="let request of requests">
-    <td>
-      {{ request.date }}
-    </td>
-    <td>
-      {{ request.reason }}
-    </td>
-    <td>
-      {{ request.status }}
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Reason</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of requests">
+      <td>
+        {{ request.date }}
+      </td>
+      <td>
+        {{ request.reason }}
+      </td>
+      <td>
+        {{ request.status }}
+      </td>
+    </tr>
+  </tbody>
 </table>
