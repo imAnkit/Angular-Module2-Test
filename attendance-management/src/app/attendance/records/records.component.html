@@ -1,3 +1,14 @@
+<h2>Add Attendance</h2>
+<form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+  <label for="date">Date</label>
+  <input type="date" id="date" formControlName="date" />
+  <label for="checkIn">checkIn</label>
+  <input type="text" id="checkIn" formControlName="checkIn" />
+  <label for="checkOut"> checkOut</label>
+  <input type="text" id="checkOut" formControlName="checkOut" />
+  <button type="submit" [disabled]="attendanceForm.invalid">Submit</button>
+</form>
+
 <h2>Attendance Records</h2>
 <table>
   <thead>
@@ -5,7 +16,6 @@
       <th>Date</th>
       <th>Check In</th>
       <th>Check Out</th>
-      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +23,6 @@
       <td>{{ record.date }}</td>
       <td>{{ record.checkIn }}</td>
       <td>{{ record.checkOut }}</td>
-      <td>{{ record.status }}</td>
     </tr>
   </tbody>
 </table>
