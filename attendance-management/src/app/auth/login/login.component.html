@@ -1,0 +1,7 @@
+<h2>Login</h2>
+<input type="text" placeholder="username" [(ngModel)]="username" />
+<select [(ngModel)]="role">
+  <option value="employee">employee</option>
+  <option value="hr">Hr Admin</option>
+</select>
+<button (click)="login()">Login</button>

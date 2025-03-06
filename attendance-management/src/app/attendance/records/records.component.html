@@ -1,0 +1,9 @@
+<h2>Attendance Records</h2>
+<table>
+  <tr *ngFor="let record; in: records">
+    <td>{{ record.date }}</td>
+    <td>{{ record.checkIn }}</td>
+    <td>{{ record.checkOut }}</td>
+    <td>{{ record.status }}</td>
+  </tr>
+</table>

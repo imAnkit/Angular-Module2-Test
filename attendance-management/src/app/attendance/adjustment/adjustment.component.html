@@ -1,0 +1,25 @@
+<h2>Request Adjustment</h2>
+<form [formGroup]="adjustmentForm" (ngSubmit)="onSubmit()">
+  <label for="date">Date</label>
+  <input type="date" id="date" formControlName="date" />
+  <label for="reason">Reason</label>
+  <input type="text" id="reason" formControlName="reason" />
+  <label for="change">Requested Change</label>
+  <input type="text" id="change" formControlName="change" />
+  <button type="submit" [disabled]="adjustmentForm.invalid">Submit</button>
+</form>
+
+<h3>Your Requests</h3>
+<table>
+  <tr *ngFor="let request of requests">
+    <td>
+      {{ request.date }}
+    </td>
+    <td>
+      {{ request.reason }}
+    </td>
+    <td>
+      {{ request.status }}
+    </td>
+  </tr>
+</table>
